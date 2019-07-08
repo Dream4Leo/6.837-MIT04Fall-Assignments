@@ -1,0 +1,28 @@
+{
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": [
+                "g++",
+             
+                "-O0",
+                "-g",
+                "-o",
+               
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "oftware/Microsoft VS Code/resources/app/extensions/ms-vscode.node-debug/",
+            "problemMatcher": []
+        }
+    ]
+}
