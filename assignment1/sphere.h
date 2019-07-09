@@ -30,7 +30,6 @@ class Sphere: public Object3D {
   protected:
     Vec3f center;
     float radius;
-
 };
 
 

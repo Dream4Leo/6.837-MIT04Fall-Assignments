@@ -3,7 +3,9 @@
         "iostream": "cpp",
         "ifs.C": "cpp",
         "image.C": "cpp",
-        "main.C": "cpp"
+        "main.C": "cpp",
+        "cmath": "cpp",
+        "type_traits": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
