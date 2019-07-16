@@ -1,6 +1,7 @@
 {
     "tasks": [
         {
+            
             "label": "build",
             "type": "shell",
             "command": [
@@ -16,7 +17,12 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "args": [
+                "-lglut32",
+                "-lglu32",
+                "-lopengl32"
+            ]
         },
         {
             "type": "npm",
