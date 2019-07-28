@@ -97,7 +97,7 @@ Vec3f Render::traceRay(Ray &ray, float tmin, int bounces,
 	assert(material != NULL);
 
 	//ambient
-	Vec3f ambient = scene->getAmbientLight();
+	Vec3f ambient = norm.Dot3(ray.getDirection()) < 0.0 ? scene->getAmbientLight() : Vec3f(0,0,0);
  	
 	//diffuse & specular
 	Vec3f diffuse(0.0, 0.0, 0.0);
@@ -152,7 +152,6 @@ Vec3f Render::traceRay(Ray &ray, float tmin, int bounces,
 							traceRay(refractRay, tmin, bounces + 1, weight, indexOfRefraction, h);
 		}
 	}
-	// color.Clamp();
 	return color;
 }
 
