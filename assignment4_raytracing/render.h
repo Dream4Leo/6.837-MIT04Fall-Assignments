@@ -124,8 +124,9 @@ Vec3f Render::traceRay(Ray &ray, float tmin, int bounces,
 	Vec3f color = (ambient + diffuse) * material->getDiffuseColor()
 												 + specular * material->getSpecularColor();
 	//cutoff
+	cout << bounces;
 	if (bounces == max_bounces) return color;
-	if (color.x() < weight && color.y() < weight && color.z() < weight) return color;
+	// if (color.x() < weight && color.y() < weight && color.z() < weight) return color;
 	
 	//Recursive RayTracing
 	//Reflection
