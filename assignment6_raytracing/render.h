@@ -129,25 +129,25 @@ Vec3f Render::traceRay(Ray &ray, float tmin, int bounces,
 		specular += material->Shade(ray, hit, dirToLight, lightcolor);
 	}
 	//mix
-	Vec3f color = (ambient + diffuse) * material->getDiffuseColor()
-												 + specular * material->getSpecularColor();
+	Vec3f color = (ambient + diffuse) * material->getDiffuseColor(p)
+												 + specular * material->getSpecularColor(p);
 	//cutoff
 	if (bounces == max_bounces) return color;
 	// if (color.x() < weight && color.y() < weight && color.z() < weight) return color;
 	
 	//Recursive RayTracing
 	//Reflection
-	if (material->getReflectiveColor().Length() > 1e-6) {
+	if (material->getReflectiveColor(p).Length() > 1e-6) {
 		Hit h(1e8, NULL, Vec3f(0,0,0));
 		Vec3f V(ray.getDirection()); V.Normalize();
 		Vec3f R(V-2*V.Dot3(norm)*norm);
 		Ray reflectRay(p, R);
-		color += material->getReflectiveColor() * 
+		color += material->getReflectiveColor(p) * 
 						 traceRay(reflectRay, tmin, bounces + 1, weight, indexOfRefraction, h);
 	}
 	//Refraction
-	if (material->getTransparentColor().Length() > 1e-6) {
-		float n = indexOfRefraction / material->getIndexOfRefraction();
+	if (material->getTransparentColor(p).Length() > 1e-6) {
+		float n = indexOfRefraction / material->getIndexOfRefraction(p);
 		Vec3f I(-1.0*ray.getDirection()); I.Normalize();
 		float c = norm.Dot3(I);
 		if (c < 0.0) n = 1.0 / n, norm = -1.0 * norm, c = -c;	// outwards
@@ -156,7 +156,7 @@ Vec3f Render::traceRay(Ray &ray, float tmin, int bounces,
 			Hit h(1e8, NULL, Vec3f(0,0,0));
 			Vec3f T((n*c-sqrt(delta))*norm-n*I);
 			Ray refractRay(p, T);
-			color += material->getTransparentColor() * 
+			color += material->getTransparentColor(p) * 
 							traceRay(refractRay, tmin, bounces + 1, weight, indexOfRefraction, h);
 		}
 	}

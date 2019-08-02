@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
   
 	RayTracingStats::Initialize(width, height, scene.getGroup()->getBBox(), nx, ny, nz);
 
+  if (width != height) scene.getCamera()->fixRatio(1.0*width/height);
+
   if (output_file != NULL) {
     if (visualize_grid) r.voxel(output_file, width, height);
                    else r.phong(output_file, width, height);
