@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "film.C": "cpp",
+    "cmath": "cpp",
+    "iostream": "cpp"
+  }
+}
