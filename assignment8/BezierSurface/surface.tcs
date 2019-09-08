@@ -1,0 +1,12 @@
+#version 450 core
+
+layout (vertices = 16) out;
+
+in vec3 tcs_ws[];
+
+out vec3 tes_ws[];
+
+void main()
+{
+	tes_ws[gl_InvocationID] = tcs_ws[gl_InvocationID];
+}
