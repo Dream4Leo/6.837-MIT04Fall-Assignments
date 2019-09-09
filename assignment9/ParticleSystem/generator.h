@@ -64,9 +64,9 @@ public:
 	}
 
 	virtual Particle* Generate(float current_time, int i) {
-		glm::vec3 vrand = rand.randomVector();
-		
-		return new Particle(position, velocity + vrand, color, dead_color, mass, lifespan);
+		glm::vec3 prand = position_randomness * rand.randomVector();
+		glm::vec3 vrand = velocity_randomness * rand.randomVector();
+		return new Particle(position + prand, velocity + vrand, color, dead_color, mass, lifespan);
 	}
 };
 
@@ -80,16 +80,18 @@ public:
 
 	virtual int numNewParticles(float current_time, float dt) const {
 		static float generated_num = 0.0f;
-		generated_num += dt * desired_num_particles / lifespan; // to edit
+		generated_num += dt * current_time * desired_num_particles / lifespan; //
 		int new_num = (int)generated_num;
 		generated_num -= new_num;
 		return new_num;
 	}
 
 	virtual Particle* Generate(float current_time, int i) {
-		glm::vec3 vrand(0.0f);
-		return new Particle(position, velocity + vrand, color, dead_color, mass, lifespan);
-		// to edit
+		float theta = (int)(rand.next()* 714025) % 360;
+		glm::vec3 poffset = (int)current_time * 1.0f * glm::vec3(cos(theta), 0.0f, sin(theta));
+		glm::vec3 prand = position_randomness * rand.randomVector();
+		glm::vec3 vrand = velocity_randomness * rand.randomVector();
+		return new Particle(position + poffset + prand, velocity + vrand, color, dead_color, mass, lifespan);
 	}
 };
 

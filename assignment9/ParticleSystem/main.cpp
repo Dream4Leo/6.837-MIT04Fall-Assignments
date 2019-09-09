@@ -67,10 +67,10 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-	glPointSize(1.0f);
+	glPointSize(3.0f);
 	glEnable(GL_DEPTH_TEST);
 	
-	Parser *parser = new Parser("system9_01_hose.txt");
+	Parser *parser = new Parser("system9_06_circle_rungekutta.txt");
 
 	glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 	Shader *particleShader = new Shader("point.vs", "point.fs");
