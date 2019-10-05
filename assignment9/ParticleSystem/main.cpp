@@ -70,8 +70,7 @@ int main()
 	glPointSize(3.0f);
 	glEnable(GL_DEPTH_TEST);
 	
-	Parser *parser = new Parser("system9_06_circle_rungekutta.txt");
-
+	Parser *parser = new Parser("system9_07_wave.txt");
 	glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 	Shader *particleShader = new Shader("point.vs", "point.fs");
 	particleShader->use();

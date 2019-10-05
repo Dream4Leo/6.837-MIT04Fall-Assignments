@@ -4,6 +4,7 @@ system
 hose_generator {
   position -5 -2 0
   velocity  0.5 0 0
+  color 1 0 0
   lifespan 20
 }
 euler_integrator {
@@ -17,6 +18,7 @@ system
 hose_generator {
   position -5 -2 0
   velocity  0.5 0 0
+  color 0 1 0
   lifespan 20
 }
 midpoint_integrator {
@@ -30,6 +32,7 @@ system
 hose_generator {
   position -5 -2 0
   velocity  0.5 0 0
+  color 0 0 1
   lifespan 20
 }
 rungekutta_integrator {
